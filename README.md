@@ -137,9 +137,6 @@ Ralis が生成したアプリケーションは、デフォルトでは `applic
 
 忘れないで欲しいのは、`Bundler.require` でグループを指定するのではなく、通常の `require` を使うことも出来るということだ。ある1つの gem だけ require をやめたい時もあるし、毎起動時に必要としない gem もあるだろう。
 
-Checking Your Code into Version Control
-----
-
 コードをバージョン管理する
 ----
 
