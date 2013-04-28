@@ -251,7 +251,7 @@ Q: `bundle install --without production` を実行したのだが、Bundler は 
 
 A: Bundler の `Gemfile.lock` は `Gemfile` に書かれた全ての依存 gem の特定のバージョンを含んでいなければならない。あなたがどんなオプションを渡したとしてもだ。でなければ、本番環境にアプリケーションをデプロイするだけで依存関係が変化してしまい、Bundler の利点がなくなってしまう。もはや本番環境のアプリケーションが開発時やテスト時に使っていたのと同じ gem を使っているかどうかは保証できない。さらに言えば、production グループに依存 gem を追加すると、そのアプリケーションはデプロイ不可能になってしまうかもしれない。
 
-例えば、`rack =1.1` という依存指定の、本番環境のみで使う gem (`rack-debugging` としよう) があると想像してみて欲しい。`bundle install --without production` を実行した時に production グループが評価されないとすると、そのアプリケーションをデプロイした時に「`rack-debugging` が `rails`( `rack ~> 1.2.1` という依存関係を持つ `actionpack` に依存している) と衝突しています」というエラーが帰ってくるだけだ。
+例えば、`rack =1.1` という依存指定の、本番環境のみで使う gem (`rack-debugging` としよう) があると想像してみて欲しい。`bundle install --without production` を実行した時に production グループが評価されないとすると、そのアプリケーションをデプロイした時に「`rack-debugging` が `rails`( `rack ~> 1.2.1` という依存関係を持つ `actionpack` に依存している) と衝突しています」というエラーが返ってくるだけだ。
 
 別の例を挙げよう。`Gemfile` にただ `gem 'rack'` とだけ書いているシンプルな Rack アプリケーションを考えてみる。そして再び、`:production` グループに `rack-debugging` を書いたとしよう。`bundle install --without production` した時に `:production` グループが評価されないとすると、開発環境では `rack 1.2.1` が使われ、デプロイ時にはテストで使っていたバージョンの Rack と `rack-debugging` が衝突を起こしてしまう。
 
@@ -278,13 +278,13 @@ Bundler はこの設定を `~/.bundle/config` に保存し、同じユーザが 
 Bundler の基本的なワークフロー
 ----
 
-Rails アプリケーションを作り始める時、`Gemfile` は既についてくる。他の種類のアプリケーション(Sinatra のような)を作る問いは、以下を実行する。
+Rails アプリケーションを作り始める時、`Gemfile` は既についてくる。他の種類のアプリケーション(Sinatra のような)を作る時は、以下を実行する。
 
     $ bundle init
 
 `bundle init` コマンドはシンプルな `Gemfile` を作成してくれる。
 
-次に、アプリケーションが依存する gem を Gemfile に追加していく。使いたい gem のバージョンについて考えていることがあるなら、そこに正しいバージョン指定を含めるようにする。
+次に、アプリケーションが依存する gem を Gemfile に追加していく。使いたい gem のバージョンについて考えていることがあるなら、そこに適切なバージョン指定を含めるようにする。
 
     source 'http://rubygems.org'
 
