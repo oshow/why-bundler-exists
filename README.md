@@ -1,6 +1,5 @@
 
-原文↓
-http://gembundler.com/v1.3/rationale.html
+原文→ http://gembundler.com/v1.3/rationale.html
 
 
 理屈はいいからオススメのワークフローを知りたい、という人はページ下部の要約へどうぞ。
