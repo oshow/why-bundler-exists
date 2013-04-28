@@ -11,11 +11,13 @@ Bundler が作られた理由は、たくさんの開発環境・ステージン
 
 そのためにはまず、`Gemfile` と呼ばれるファイルに依存関係を宣言する必要がある。`Gemfile` はアプリケーションのルートディレクトリに置き、中身は以下のようになる。
 
-    source 'http://rubygems.org'
+```ruby
+source 'http://rubygems.org'
 
-    gem 'rails', '3.0.0.rc'
-    gem 'rack-cache'
-    gem 'nokogiri', '~> 1.4.2'
+gem 'rails', '3.0.0.rc'
+gem 'rack-cache'
+gem 'nokogiri', '~> 1.4.2'
+```
 
 この `Gemfile` で述べていることはそれほど多くない。まず、`Gemfile` 内で宣言している gem を探す先として `http://rubygems.org` を指定している。source は複数指定することも可能で、その場合は書いた順番に source を見に行く。
 
@@ -97,11 +99,13 @@ require 'nokogiri'
 
 鋭い読者ならば `rack-cache` の場合は `require 'rack-cache'` ではなく `require 'rack/cache'` が正しいのでは、と気づいただろう。`require 'rack/cache'` をするように Bundler に伝えるには、Gemfile を修正する。
 
-    source 'http://rubygems.org'
+```ruby
+source 'http://rubygems.org'
 
-    gem 'rails', '3.0.0.rc'
-    gem 'rack-cache', :require => 'rack/cache'
-    gem 'nokogiri', '~> 1.4.2'
+gem 'rails', '3.0.0.rc'
+gem 'rack-cache', :require => 'rack/cache'
+gem 'nokogiri', '~> 1.4.2'
+```
 
 `Gemfile` が小さいなら、`Bundler.require` を使わずに手動で gem を require するのをお勧めする(特に、`:require` 指定を入れなきゃいけないような時は)。`Gemfile` が大きい場合は、require を大量に書くのを避けるために `Bundler.require` を使おう。
 
@@ -112,19 +116,21 @@ require 'nokogiri'
 
 そのためには、依存関係をグループ分けしよう。
 
-    source 'http://rubygems.org'
+```ruby
+source 'http://rubygems.org'
 
-    gem 'rails', '3.2.2'
-    gem 'rack-cache', :require => 'rack/cache'
-    gem 'nokogiri', '~> 1.4.2'
+gem 'rails', '3.2.2'
+gem 'rack-cache', :require => 'rack/cache'
+gem 'nokogiri', '~> 1.4.2'
 
-    group :development do
-      gem 'sqlite3'
-    end
+group :development do
+  gem 'sqlite3'
+end
 
-    group :production do
-      gem 'pg'
-    end
+group :production do
+  gem 'pg'
+end
+```
 
 そして、開発環境では `production` グループをスキップするように Bundler に命令する。
 
@@ -291,11 +297,13 @@ Rails アプリケーションを作り始める時、`Gemfile` は既につい�
 
 次に、アプリケーションが依存する gem を Gemfile に追加していく。使いたい gem のバージョンについて考えていることがあるなら、そこに適切なバージョン指定を含めるようにする。
 
-    source 'http://rubygems.org'
+```ruby
+source 'http://rubygems.org'
 
-    gem 'sinatra', '~> 0.9.0'
-    gem 'rack-cache'
-    gem 'rack-bug'
+gem 'sinatra', '~> 0.9.0'
+gem 'rack-cache'
+gem 'rack-bug'
+```
 
 gem がまだシステムにインストールされていないなら、以下を実行する。
 
@@ -303,11 +311,13 @@ gem がまだシステムにインストールされていないなら、以下�
 
 gem のバージョン要求を更新したいなら、まず Gemfile を編集する。
 
-    source 'http://rubygems.org'
+```ruby
+source 'http://rubygems.org'
 
-    gem 'sinatra', '~> 1.0.0'
-    gem 'rack-cache'
-    gem 'rack-bug'
+gem 'sinatra', '~> 1.0.0'
+gem 'rack-cache'
+gem 'rack-bug'
+```
 
 それから以下を実行。
 
