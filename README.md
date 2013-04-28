@@ -1,5 +1,4 @@
-
-原文→ http://gembundler.com/v1.3/rationale.html
+目次 英語原文→ http://gembundler.com/v1.3/rationale.html
 
 
 理屈はいいからオススメのワークフローを知りたい、という人はページ下部の要約へどうぞ。
@@ -73,8 +72,10 @@ Bundler の役割は、`Gemfile` に書いた gem (と、それが依存する g
 
 その他のアプリケーション (例えば Sinatra 等) では、gem を require する前に Bundler の設定を書く必要がある。アプリケーションで最初に読み込むファイル ( Sinatra ならば、`require 'sinatra'` を書くファイル) に、以下のコードを書こう。
 
-    require 'rubygems'
-    require 'bundler/setup'
+```ruby
+require 'rubygems'
+require 'bundler/setup'
+```
 
 訳注：Ruby1.9 以降なら require 'rubygems' は不要。
 
@@ -82,13 +83,17 @@ Bundler の役割は、`Gemfile` に書いた gem (と、それが依存する g
 
 これで必要な gem を require するコードが書けるようになった。例えば `require 'sinatra'` を実行できる。たくさんの依存関係を持っている場合は「`Gemfile` に書いた gem を全部 require したいなぁ」と思うかもしれない。そういう時は、`require 'bundler/setup'` の直後に以下のコードを書く。
 
-    Bundler.require(:default)
+```ruby
+Bundler.require(:default)
+```
 
 例で取り上げている Gemfile では、この行は以下を書いたのと同じになる。
 
-    require 'rails'
-    require 'rack-cache'
-    require 'nokogiri'
+```ruby
+require 'rails'
+require 'rack-cache'
+require 'nokogiri'
+```
 
 鋭い読者ならば `rack-cache` の場合は `require 'rack-cache'` ではなく `require 'rack/cache'` が正しいのでは、と気づいただろう。`require 'rack/cache'` をするように Bundler に伝えるには、Gemfile を修正する。
 
